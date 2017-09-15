@@ -8,8 +8,12 @@ class App extends Component{
         return(
             <div>
                 <Header />
-                <MenuBar />
-                {this.props.children} {/* To render nested components in routes */}
+                <div>
+                    <MenuBar/>
+                </div>
+                <div className="appcore">
+                    {this.props.children} {/* To render nested components in routes */}
+                </div>
             </div>
         )
     };
