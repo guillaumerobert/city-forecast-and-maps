@@ -5,13 +5,13 @@ class WeatherList extends Component{
 
     renderWeather(cityData){
         const cityName = cityData.data.city.name;
-        const temperature = cityData.data.city.name; // TODO : retrieve data in (very imbricated) json from API 
-        const pressure = cityData.data.city.name;
-        const humidity = cityData.data.city.name;
+        const temperature = cityData.data.list[0].main.temp; // temperature comes in kelvin.
+        const pressure = cityData.data.list[0].main.pressure;
+        const humidity = cityData.data.list[0].main.humidity;
         return(
             <tr key={cityName}>
                 <td>{cityName}</td>
-                <td>{temperature}</td>
+                <td>{ Number((temperature - 273).toFixed(1))}</td>
                 <td>{pressure}</td>
                 <td>{humidity}</td>
             </tr>
@@ -25,9 +25,9 @@ class WeatherList extends Component{
                 <thead>
                 <tr>
                     <th>City</th>
-                    <th>Temperature</th>
-                    <th>Pressure</th>
-                    <th>Humidity</th>
+                    <th>Temperature (C°)</th>
+                    <th>Pressure (kPa)</th>
+                    <th>Humidity (%)</th>
                 </tr>
                 </thead>
                 <tbody>

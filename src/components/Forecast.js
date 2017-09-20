@@ -42,7 +42,7 @@ class Forecast extends Component{
     render(){
         return(
             <div className="container">
-                <h1>Forecast is coming</h1>
+                <h2>My forecast</h2>
                 <form onSubmit={this.onFormSubmit} className="input-group">
                     <input
                     placeholder="Choose a city to show its forecast"

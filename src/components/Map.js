@@ -42,7 +42,7 @@ class MapShow extends Component{
     render(){
         return(
         <div className="leafletmap">
-            <h3>My Map Of {this.state.city} </h3>
+            <h2>My Map Of {this.state.city} </h2>
             <Map center={this.state.position} zoom={13}>
                 <TileLayer
                     url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
