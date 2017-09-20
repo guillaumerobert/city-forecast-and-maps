@@ -3,13 +3,17 @@ import React, {Component} from 'react';
 
 class WeatherList extends Component{
 
-    renderWeather(cityData){ // TODO : Add a row with charts for any data given from api
+    renderWeather(cityData){
+        const cityName = cityData.data.city.name;
+        const temperature = cityData.data.city.name; // TODO : retrieve data in (very imbricated) json from API 
+        const pressure = cityData.data.city.name;
+        const humidity = cityData.data.city.name;
         return(
-            <tr>
-                <td>City</td>
-                <td>Temp</td>
-                <td>Pres</td>
-                <td>Humi</td>
+            <tr key={cityName}>
+                <td>{cityName}</td>
+                <td>{temperature}</td>
+                <td>{pressure}</td>
+                <td>{humidity}</td>
             </tr>
         );
     }

@@ -1,12 +1,14 @@
 import React, {Component} from 'react';
 import WeatherList from './Weather_list';
+import axios from 'axios';
 
 class Forecast extends Component{
 
     constructor(props){
         super(props);
-        this.state = { city: '', weatherData :['Test']};
+        this.state = { city: '', weatherData :[]};
         this.onInputChange = this.onInputChange.bind(this);
+        this.onFormSubmit = this.onFormSubmit.bind(this);
     }
 
     onInputChange(event){
@@ -16,12 +18,23 @@ class Forecast extends Component{
     onFormSubmit(event){
         event.preventDefault();
 
-        const API_KEY = "6f070e42054c188643b839497d443b00"; // From OpenWeatherMap.org , totally free, please register and use your own key !
-        const BASE_URL = "api.openweathermap.org/data/2.5/forecast?q=,us&mode=json";
+        let self = this;
 
-        /** TODO
-         * Fetch Data and set this.state.weatherData
-         */
+        const city = this.state.city;
+
+        // Notice : This design is probably not the best way to keep the data. Here we maintain the weather state of the component.
+        // A better approach for production app could be a Redux based architecture.
+
+        const API_KEY = "6f070e42054c188643b839497d443b00"; // From OpenWeatherMap.org , totally free, please register and use your own key !
+        const BASE_URL = "http://api.openweathermap.org/data/2.5/forecast?";
+
+        const fullUrl = `${BASE_URL}q=${city}&mode=json&appid=${API_KEY}`;
+
+        axios.get(fullUrl).then(function(response){
+                self.setState({weatherData : self.state.weatherData.concat(response)});
+        }).catch(function(error){
+            console.log(error);
+        });
 
     }
 
