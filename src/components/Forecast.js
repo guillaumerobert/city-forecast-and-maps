@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
+import WeatherList from './Weather_list';
 
 class Forecast extends Component{
 
     constructor(props){
         super(props);
-        this.state = { city: ''};
+        this.state = { city: '', weatherData :['Test']};
         this.onInputChange = this.onInputChange.bind(this);
     }
 
@@ -15,10 +16,13 @@ class Forecast extends Component{
     onFormSubmit(event){
         event.preventDefault();
 
+        const API_KEY = "6f070e42054c188643b839497d443b00"; // From OpenWeatherMap.org , totally free, please register and use your own key !
+        const BASE_URL = "api.openweathermap.org/data/2.5/forecast?q=,us&mode=json";
+
         /** TODO
-         * Fetch Data
+         * Fetch Data and set this.state.weatherData
          */
-        
+
     }
 
 
@@ -37,6 +41,7 @@ class Forecast extends Component{
                     <button type="submit" className="btn btn-secondary">Submit</button>
                 </span>
                 </form>
+                <WeatherList weather={this.state.weatherData}/>
             </div>
 
         )
