@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import {Sparklines, SparklinesLine, SparklinesReferenceLine} from 'react-sparklines';
-import _ from 'lodash';
+import WeatherChart from './WeatherChart';
 
 
 class WeatherList extends Component{
@@ -14,31 +13,12 @@ class WeatherList extends Component{
         return(
             <tr key={cityName}>
                 <td>{cityName}</td>
-                <td>
-                    <Sparklines height="120" width="180" data={temperature}>
-                        <SparklinesLine color="red" />
-                        <SparklinesReferenceLine type="avg" />
-                    </Sparklines>
-                    <div>{_.round((_.sum(temperature)/temperature.length)-273)} C°</div>
-                </td>
-                <td>
-                    <Sparklines height="120" width="180" data={pressure}>
-                        <SparklinesLine color="green" />
-                        <SparklinesReferenceLine type="avg" />
-                    </Sparklines>
-                    <div>{_.round(_.sum(pressure)/pressure.length)} kPa</div>
-                </td>
-                <td>
-                    <Sparklines height="120" width="180" data={humidity}>
-                        <SparklinesLine color="blue" />
-                        <SparklinesReferenceLine type="avg" />
-                    </Sparklines>
-                    <div>{_.round(_.sum(humidity)/humidity.length)} %</div>
-                </td>
+                <WeatherChart data={temperature} color="red" unit="C°" celiusConv={true} />
+                <WeatherChart data={pressure} color="green" unit="kPa" />
+                <WeatherChart data={humidity} color="blue" unit="%" />
             </tr>
         );
     }
-
 
     render(){
         return(
